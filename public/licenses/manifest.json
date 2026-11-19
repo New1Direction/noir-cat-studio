@@ -1,0 +1,183 @@
+{
+  "description": "Unmodified upstream license and notice texts packaged with this studio.",
+  "files": [
+    {
+      "package": "@mediapipe/tasks-vision and Pose Landmarker Lite",
+      "version": "1.2.2",
+      "license": "Apache-2.0",
+      "role": "browser runtime and model",
+      "file": "mediapipe-LICENSE.txt",
+      "source": "public/mediapipe/LICENSE.txt",
+      "sha256": "8707eef0533987efc5b155d64761eeb6e20793f50b9bd1a68dad1cf4719d0ed8"
+    },
+    {
+      "package": "three",
+      "version": "0.181.2",
+      "license": "MIT",
+      "role": "browser",
+      "file": "three-LICENSE.txt",
+      "source": "npm:three@0.181.2/LICENSE",
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+    },
+    {
+      "package": "@gltf-transform/core",
+      "version": "4.5.1",
+      "license": "MIT",
+      "role": "browser",
+      "file": "gltf-transform-core-LICENSE.txt",
+      "source": "npm:@gltf-transform/core@4.5.1/LICENSE.md",
+      "sha256": "2c4f111d00dbf22b10d31a14813c5f5de6a828640f7311f26b9dda89b3fce165"
+    },
+    {
+      "package": "@gltf-transform/extensions",
+      "version": "4.5.1",
+      "license": "MIT",
+      "role": "browser",
+      "file": "gltf-transform-extensions-LICENSE.txt",
+      "source": "npm:@gltf-transform/extensions@4.5.1/LICENSE.md",
+      "sha256": "2c4f111d00dbf22b10d31a14813c5f5de6a828640f7311f26b9dda89b3fce165"
+    },
+    {
+      "package": "@gltf-transform/functions",
+      "version": "4.5.1",
+      "license": "MIT",
+      "role": "browser",
+      "file": "gltf-transform-functions-LICENSE.txt",
+      "source": "npm:@gltf-transform/functions@4.5.1/LICENSE.md",
+      "sha256": "2c4f111d00dbf22b10d31a14813c5f5de6a828640f7311f26b9dda89b3fce165"
+    },
+    {
+      "package": "gltf-validator",
+      "version": "2.0.0-dev.3.10",
+      "license": "Apache-2.0",
+      "role": "browser",
+      "file": "gltf-validator-LICENSE.txt",
+      "source": "npm:gltf-validator@2.0.0-dev.3.10/LICENSE",
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    {
+      "package": "gltf-validator",
+      "version": "2.0.0-dev.3.10",
+      "license": "Apache-2.0",
+      "role": "browser",
+      "file": "gltf-validator-NOTICES.txt",
+      "source": "npm:gltf-validator@2.0.0-dev.3.10/NOTICES",
+      "sha256": "933f161ca1e7b3ead5a6cf93ebb3bf6cb67f0e79b38e08d2046f8cdc41cb78a3"
+    },
+    {
+      "package": "property-graph",
+      "version": "4.1.0",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "property-graph-LICENSE.txt",
+      "source": "npm:property-graph@4.1.0/LICENSE",
+      "sha256": "ec5114155d92f326802c964dcf9eb5261e09192c62f14d195d2a8be49eb1d489"
+    },
+    {
+      "package": "ktx-parse",
+      "version": "1.1.0",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "ktx-parse-LICENSE.txt",
+      "source": "npm:ktx-parse@1.1.0/LICENSE",
+      "sha256": "79847431f9ecef9cf399085cb863452e71a6dab99738f4f0c1ea06c6484b5692"
+    },
+    {
+      "package": "ndarray",
+      "version": "1.1.1",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "ndarray-LICENSE.txt",
+      "source": "npm:ndarray@1.1.1/LICENSE",
+      "sha256": "f149791eb5101f10b1fb88997310f2b054604106c4bf6050e0aee66a5bd35cc7"
+    },
+    {
+      "package": "ndarray-lanczos",
+      "version": "0.3.0",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "ndarray-lanczos-LICENSE.txt",
+      "source": "npm:ndarray-lanczos@0.3.0/LICENSE",
+      "sha256": "ec5114155d92f326802c964dcf9eb5261e09192c62f14d195d2a8be49eb1d489"
+    },
+    {
+      "package": "ndarray-ops",
+      "version": "1.2.2",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "ndarray-ops-LICENSE.txt",
+      "source": "npm:ndarray-ops@1.2.2/LICENSE",
+      "sha256": "e67aed7df22dc8031e4fcf5338fe91cb33e3817e5c58a99a2a2802eea9069791"
+    },
+    {
+      "package": "ndarray-pixels",
+      "version": "5.2.0",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "ndarray-pixels-LICENSE.txt",
+      "source": "npm:ndarray-pixels@5.2.0/LICENSE",
+      "sha256": "ec5114155d92f326802c964dcf9eb5261e09192c62f14d195d2a8be49eb1d489"
+    },
+    {
+      "package": "cwise-compiler",
+      "version": "1.1.3",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "cwise-compiler-LICENSE.txt",
+      "source": "npm:cwise-compiler@1.1.3/LICENSE",
+      "sha256": "e67aed7df22dc8031e4fcf5338fe91cb33e3817e5c58a99a2a2802eea9069791"
+    },
+    {
+      "package": "iota-array",
+      "version": "1.0.0",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "iota-array-LICENSE.txt",
+      "source": "npm:iota-array@1.0.0/LICENSE",
+      "sha256": "e67aed7df22dc8031e4fcf5338fe91cb33e3817e5c58a99a2a2802eea9069791"
+    },
+    {
+      "package": "is-buffer",
+      "version": "1.1.6",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "is-buffer-LICENSE.txt",
+      "source": "npm:is-buffer@1.1.6/LICENSE",
+      "sha256": "c7cc929b57080f4b9d0c6cf57669f0463fc5b39906344dfc8d3bc43426b30eac"
+    },
+    {
+      "package": "uniq",
+      "version": "1.0.1",
+      "license": "MIT",
+      "role": "browser dependency",
+      "file": "uniq-LICENSE.txt",
+      "source": "npm:uniq@1.0.1/LICENSE",
+      "sha256": "e67aed7df22dc8031e4fcf5338fe91cb33e3817e5c58a99a2a2802eea9069791"
+    },
+    {
+      "package": "@types/ndarray",
+      "version": "1.1.0",
+      "license": "MIT",
+      "role": "type declarations",
+      "file": "types-ndarray-LICENSE.txt",
+      "source": "npm:@types/ndarray@1.1.0/LICENSE",
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "package": "vite",
+      "version": "6.4.5",
+      "license": "MIT",
+      "role": "build tool",
+      "file": "vite-LICENSE.txt",
+      "source": "npm:vite@6.4.5/LICENSE.md",
+      "sha256": "008938a3441801ca3960f8e3ccb4c0738e7996442a53063141d57d3769a7344d"
+    }
+  ],
+  "project": {
+    "license": "MIT",
+    "scope": "Original source code, procedural 3D model, and animations; supplied comparison reference image excluded.",
+    "file": "project-LICENSE.txt",
+    "source": "LICENSE",
+    "sha256": "41797d46a3e8c02be8920a26d53e81b04f762f3ed4fe323cfd5425b384180a58"
+  }
+}

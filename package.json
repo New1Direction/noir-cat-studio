@@ -1,0 +1,25 @@
+{
+  "name": "noir-cat-studio",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "test": "node --test tests/*.test.mjs",
+    "export:models": "node scripts/export-models.mjs",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "1.2.2",
+    "@gltf-transform/core": "4.5.1",
+    "@gltf-transform/extensions": "4.5.1",
+    "@gltf-transform/functions": "4.5.1",
+    "gltf-validator": "2.0.0-dev.3.10",
+    "three": "0.181.2"
+  },
+  "devDependencies": {
+    "vite": "6.4.5"
+  }
+}

@@ -1,0 +1,55 @@
+NOIR CHARACTER STUDIO — DISTRIBUTION NOTICE
+
+Project material and reference image
+------------------------------------
+The project's original source code, procedural 3D model, and animations are
+released under the MIT license. The full project license is included here as
+project-LICENSE.txt and in the source distribution as LICENSE.
+
+The character reference image is user-provided comparison material. It is not
+covered by the project's MIT grant, and its inclusion does not assert a separate
+license grant for that image. The third-party licenses below remain independent
+and apply to their corresponding components.
+
+Third-party components
+----------------------
+The following files preserve full upstream license or notice texts. They have
+been copied without modification. manifest.json records their package versions,
+origins, and SHA-256 hashes.
+
+Browser libraries and model:
+  Three.js                  three-LICENSE.txt
+  MediaPipe runtime/model   mediapipe-LICENSE.txt
+  glTF Transform core       gltf-transform-core-LICENSE.txt
+  glTF Transform extensions gltf-transform-extensions-LICENSE.txt
+  glTF Transform functions  gltf-transform-functions-LICENSE.txt
+  Khronos glTF Validator    gltf-validator-LICENSE.txt
+                            gltf-validator-NOTICES.txt
+
+Browser dependency chain:
+  property-graph            property-graph-LICENSE.txt
+  ktx-parse                 ktx-parse-LICENSE.txt
+  ndarray                   ndarray-LICENSE.txt
+  ndarray-lanczos           ndarray-lanczos-LICENSE.txt
+  ndarray-ops               ndarray-ops-LICENSE.txt
+  ndarray-pixels            ndarray-pixels-LICENSE.txt
+  cwise-compiler            cwise-compiler-LICENSE.txt
+  iota-array                iota-array-LICENSE.txt
+  is-buffer                 is-buffer-LICENSE.txt
+  uniq                      uniq-LICENSE.txt
+
+Source declarations and build tool:
+  @types/ndarray            types-ndarray-LICENSE.txt
+  Vite                      vite-LICENSE.txt
+
+The dependency-chain texts are included conservatively, even where the build
+removes unused code. Node-only image-processing dependencies are not browser
+assets; their notices remain in their installed packages.
+
+DM Sans and Manrope are requested through Google Fonts. Font files are not
+bundled in this distribution; system fonts provide fallbacks.
+
+The MediaPipe assets also retain their license beside the runtime and model in
+the mediapipe directory. Its assets.json lists the official upstream sources
+and integrity hashes. No game character assets, game animation files, or music
+are bundled.

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eeece6" />
+    <meta name="description" content="Noir Character Studio. Animate, pose, customize, and export a fully rigged procedural Three.js character in four rendering editions." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Noir — Character Studio</title>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="%BASE_URL%" aria-label="Noir studio home"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 15 6 4l8 7h4l8-7 1 11c6 16-28 16-22 0Z" fill="currentColor"/><path d="M10 20q2-4 4 0m5 0q2-4 4 0" stroke="#eeece6" stroke-width="1.6" stroke-linecap="round"/></svg><span>noir<span class="brand-dot">.</span></span></a>
+      <div class="edition-switcher" role="group" aria-label="Rendering style">
+        <span class="edition-switch-label">RENDER EDITION</span>
+        <div class="edition-buttons">
+          <button data-edition="original" aria-pressed="false"><span class="edition-symbol original-symbol">○</span>Original<span class="edition-year">01</span></button>
+          <button data-edition="dreamcast" class="selected" aria-pressed="true"><span class="edition-symbol dreamcast-symbol">◉</span>Dreamcast<span class="edition-year">'99</span></button>
+          <button data-edition="ps1" aria-pressed="false"><span class="edition-symbol ps1-symbol">△</span>PS1<span class="edition-year">'96</span></button>
+          <button data-edition="ps2" aria-pressed="false"><span class="edition-symbol ps2-symbol">◇</span>PS2<span class="edition-year">'01</span></button>
+        </div>
+      </div>
+      <div class="header-right"><span class="engine-badge"><i></i> CHARACTER STUDIO</span><button class="export-button" id="export"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 13v4h12v-4"/></svg><span>Animated GLB</span><span class="file-type">↓</span></button></div>
+    </header>
+
+    <main class="workspace">
+      <section class="stage" aria-label="Interactive 3D cat viewer">
+        <div class="scene-heading"><div class="eyebrow">NOIR / CHARACTER STUDIO</div><h1>Noir.</h1><p>Animate. Pose. Make it yours.</p></div>
+        <div id="viewport" role="img" aria-label="Interactive black cat model. Drag to orbit, scroll to zoom, or use the view controls below." tabindex="0"></div>
+        <div class="arcade-hud" id="arcade-hud" aria-hidden="true" hidden>
+          <div class="hud-top"><span class="hud-player"><i>1P</i> CHARACTER SELECT</span><span id="hud-edition">DC / 1999</span></div>
+          <div class="hud-speed-lines"></div>
+          <div class="hud-logo">NOIR<span id="hud-subtitle">SUNSHINE ARCADE</span></div>
+          <div class="ps2-memory-card"><svg viewBox="0 0 24 30" aria-hidden="true"><path d="M4 1h16v28H4zM7 3h10v7H7zM7 17h10M7 20h7M7 24h10"/></svg><div><strong>MEMORY CARD</strong><span>NOIR / CHARACTER DATA</span><b>SLOT 04 <i>●</i></b></div></div>
+          <div class="hud-bottom"><span id="hud-signal">640 × 480 · VGA</span><span>FREE ORBIT <b>✦</b></span></div>
+        </div>
+        <div class="loading" id="loading"><span></span> Bringing Noir to life…</div>
+        <div class="scene-status"><span class="status-dot"></span><span id="scene-status">Perspective / Free orbit</span></div>
+        <button class="icon-button reset-camera" id="reset-camera" aria-label="Reset camera" title="Reset camera"><svg viewBox="0 0 20 20"><path d="M4 7a6 6 0 1 1 0 6M4 3v4h4"/></svg></button>
+        <div class="view-labels" id="view-labels" hidden><span>FRONT</span><span>SIDE</span><span>BACK</span></div>
+        <div class="stage-bottom"><div class="gesture-hint"><svg viewBox="0 0 18 20" aria-hidden="true"><rect x="3" y="1" width="12" height="18" rx="6"/><path d="M9 1v6"/></svg><span>Drag to orbit <b>·</b> Scroll to zoom</span></div><button class="snapshot-button" id="snapshot"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 5 1-2h6l1 2h3v11H3V5Z"/><circle cx="10" cy="10" r="3"/></svg> Save image</button></div>
+        <div class="motion-dock" aria-label="Animation and camera controls">
+          <div class="clip-strip" role="group" aria-label="Animation clips">
+            <span class="dock-label">MOTION</span>
+            <button data-clip="Idle" class="selected" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="4" r="1.7"/><path d="M10 7v5m-4-1 4-3 4 3m-7 6 3-5 3 5"/></svg>Idle</button>
+            <button data-clip="Walk" aria-pressed="false" title="Walk · relaxed steps"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="11" cy="3.5" r="1.6"/><path d="m10 7-2 5 4 2 1 4M8 12l-3 5m5-10 3 4 3 1M9 8l-4 3"/></svg>Walk</button>
+            <button data-clip="Run" aria-pressed="false" title="Run · steady pace"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="13" cy="3.5" r="1.6"/><path d="m11 7-3 5 5 1 2 4M8 12l-3 4-3-1m9-8 3 3 3-1M10 7 6 6 4 9"/></svg>Run</button>
+            <button data-clip="Sprint" type="button" aria-pressed="false" title="Sprint · fast, forward drive"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="14" cy="3" r="1.5"/><path d="m12 6-4 6 6 1 2 4M8 12l-4 4-3-1m11-9 3 3 3-2M11 7 7 5 5 8M1 7h3m-3 3h2"/></svg>Sprint</button>
+            <button data-clip="Wave" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="4" r="1.6"/><path d="M9 7v5m-4-1 4-3 5 1 1-5m-9 14 3-6 3 6m5-17 1 2"/></svg>Wave</button>
+            <button data-clip="Sit" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="4" r="1.6"/><path d="M8 7v5h6v5M8 8l4 2m-7 2v5m0-4h8"/></svg>Sit</button>
+          </div>
+          <div class="transport-row">
+            <button id="play-pause" class="transport-play" aria-label="Pause animation" title="Play or pause · Space"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10m6-10v10"/></svg></button>
+            <output id="animation-time" class="animation-time" aria-live="off">0:00 / 0:04</output>
+            <input id="timeline" type="range" min="0" max="1" step="0.001" value="0" style="--fill:0%" aria-label="Animation timeline"/>
+            <label class="speed-control" for="playback-speed"><span class="sr-only">Playback speed</span><select id="playback-speed" aria-label="Playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
+            <button id="reset-motion" class="transport-reset" aria-label="Restart animation" title="Restart animation"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 4v12m10-11-7 5 7 5Z"/></svg></button>
+          </div>
+          <div class="camera-row"><span class="dock-label">CAMERA</span><div class="view-switch" role="group" aria-label="Camera views"><button data-view="front" class="active" aria-pressed="true">Front</button><button data-view="side" aria-pressed="false">Side</button><button data-view="back" aria-pressed="false">Back</button><span class="view-divider"></span><button data-view="all" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="3" width="3" height="10" rx=".6"/><rect x="6.5" y="3" width="3" height="10" rx=".6"/><rect x="12" y="3" width="3" height="10" rx=".6"/></svg>All views</button></div><button id="dance-library" class="dance-library-trigger" type="button" aria-label="Browse ten dance emotes" aria-controls="dance-collection"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="4" r="1.6"/><path d="m4 6 6 3 6-3m-6 3v4m-4 4 4-4 4 4m3-15v3m-1.5-1.5h3"/></svg><span>Dances</span><b>10</b></button><kbd class="camera-shortcut">1–4</kbd></div>
+        </div>
+      </section>
+
+      <aside class="inspector" aria-label="Scene settings">
+        <div class="inspector-title"><h2>Character controls</h2><button class="text-button" id="reset-settings">Reset all</button></div>
+        <div class="character-tabs" role="tablist" aria-label="Character controls"><button id="animation-tab" data-panel="animation" class="selected" role="tab" aria-selected="true" aria-controls="animation-panel">Animation</button><button id="pose-tab" data-panel="pose" role="tab" aria-selected="false" aria-controls="pose-panel">Pose</button><button id="capture-tab" data-panel="capture" role="tab" aria-selected="false" aria-controls="capture-panel">Transfer motion</button></div>
+        <section class="video-export-card" id="video-export-card" aria-labelledby="video-export-heading">
+          <div class="video-export-heading"><h3 id="video-export-heading">Video clip</h3><span>30 FPS</span></div>
+          <p>Export the current motion for your edit.</p>
+          <label class="video-background-control" for="video-background"><span>Background</span><select id="video-background"><option value="studio">Studio</option><option value="green">Green screen</option></select></label>
+          <div class="video-export-actions"><button id="record-clip" type="button" aria-label="Export current motion as a video clip"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="5" width="10" height="10" rx="2"/><path d="m13 8 4-2v8l-4-2"/></svg>Export video</button><button id="cancel-record" class="text-button" type="button" aria-label="Cancel video recording" hidden>Cancel</button></div>
+          <output id="record-status" class="record-status" aria-live="polite" aria-atomic="true"></output>
+          <small>Green screen: Original edition.</small>
+        </section>
+        <section id="animation-panel" class="character-panel" role="tabpanel" aria-labelledby="animation-tab">
+          <div class="rig-status"><span class="rig-status-indicator"></span><strong id="rig-badge">Rigged & ready</strong><span id="rig-bones">25 joints</span></div>
+          <div class="motion-summary"><span class="inspector-eyebrow">MOTION PREVIEW</span><p id="clip-description">A relaxed loop with a gentle breath and tail motion.</p></div>
+          <p class="panel-hint"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m8 5 7 5-7 5Z"/></svg>Choose a motion below the stage.</p>
+          <div class="action-library" id="action-collection" role="region" aria-labelledby="action-heading">
+            <div class="dance-library-heading"><h3 id="action-heading">Actions<span>3 clips</span></h3></div>
+            <div class="action-grid" role="group" aria-label="Reusable action clips">
+              <button class="action-tile" data-clip="Shoot" type="button" aria-pressed="false" aria-label="Play Shoot action"><span class="action-glyph"><svg viewBox="0 0 32 30" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="m12 9-1 10m1-8 7 2 4-1m-12 0 7 4 5-3m-12 6-5 9m5-9 6 9m8-21 3-1m-3 4h4m-4 3 3 2M4 10l-3 1"/></svg></span><strong>Shoot</strong><span class="action-caption">Recoil</span></button>
+              <button class="action-tile" data-clip="Dive" type="button" aria-pressed="false" aria-label="Play Dive action"><span class="action-glyph"><svg viewBox="0 0 32 30" aria-hidden="true"><circle cx="20" cy="10" r="2"/><path d="m16 13-8 4-6-2m6 2-4 5m12-9 9 3 4-1m-14-1 8 7 6 1M2 27h28M1 7h6m-4 4h5"/></svg></span><strong>Dive</strong><span class="action-caption">Low dive</span></button>
+              <button class="action-tile" data-clip="Smoke" type="button" aria-pressed="false" aria-label="Play Smoke action"><span class="action-glyph"><svg viewBox="0 0 32 30" aria-hidden="true"><circle cx="11" cy="8" r="2"/><path d="M11 12v9m0-7 6 3 2-3m-8 7-5 7m5-7 6 7m1-19c4 0 1-5 5-5m-3 9c5 0 2-6 7-6m-3 9c5 0 2-5 6-5"/></svg></span><strong>Smoke</strong><span class="action-caption">Exhale</span></button>
+            </div>
+          </div>
+          <div class="dance-emotes" id="dance-collection" role="region" aria-labelledby="dance-heading" tabindex="-1">
+            <div class="dance-library-heading"><h3 id="dance-heading">Dances<span id="dance-current">10 emotes</span></h3><span class="dance-source">Fortnite-inspired</span></div>
+            <p class="dance-library-caption">Motions adapted for Noir.</p>
+            <div class="dance-grid" role="group" aria-label="Dance emotes">
+              <button class="dance-tile" data-clip="Floss" type="button" aria-pressed="false" aria-label="Play Floss dance"><span class="dance-number">01</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 9v8m-7-5 7 2 7-4M9 25l3-8 3 8m-12-8h4m10-3h4"/></svg></span><span class="dance-name">Floss<small>Side-to-side</small></span></button>
+              <button class="dance-tile" data-clip="Orange Justice" type="button" aria-pressed="false" aria-label="Play Orange Justice dance"><span class="dance-number">02</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="13" cy="5" r="2"/><path d="m12 9-2 8 6 5-1 4m-5-9-5 5 1 4m7-16 6 2 2-4M12 9l-6 4-3-3"/></svg></span><span class="dance-name">Orange Justice<small>Loose & bouncy</small></span></button>
+              <button class="dance-tile" data-clip="Best Mates" type="button" aria-pressed="false" aria-label="Play Best Mates dance"><span class="dance-number">03</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="11" cy="5" r="2"/><path d="m11 9 2 8-7 5v4m7-9 5 6 3 1M11 10l-6 4-3-2m9-2 6 2 4-4"/></svg></span><span class="dance-name">Best Mates<small>Swing & step</small></span></button>
+              <button class="dance-tile" data-clip="Take the L" type="button" aria-pressed="false" aria-label="Play Take the L dance"><span class="dance-number">04</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="12" cy="6" r="2"/><path d="M12 10v8m0-7 5-4V2h-3m-2 9-6 4-3-2m9 5 6 2 3-3m-9 1-4 8"/></svg></span><span class="dance-name">Take the L<small>Kick & gesture</small></span></button>
+              <button class="dance-tile" data-clip="Electro Shuffle" type="button" aria-pressed="false" aria-label="Play Electro Shuffle dance"><span class="dance-number">05</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="m12 8-2 9 6 4-3 5m-3-9-4 5-4-1m10-11 6 2 3-3M12 9l-6 2-3-4m11 20h5"/></svg></span><span class="dance-name">Electro Shuffle<small>Quick footwork</small></span></button>
+              <button class="dance-tile" data-clip="Fresh" type="button" aria-pressed="false" aria-label="Play Fresh dance"><span class="dance-number">06</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="10" cy="5" r="2"/><path d="m10 9 3 8-6 5 1 4m5-9 5 9M11 11l-7 1-2-4m10 4 6 2 3-4"/></svg></span><span class="dance-name">Fresh<small>Groove & lean</small></span></button>
+              <button class="dance-tile" data-clip="Dance Moves" type="button" aria-pressed="false" aria-label="Play Dance Moves dance"><span class="dance-number">07</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 9v9m-8-6 8-1 8 1M7 25l5-7 5 7m-13-9-2-4m18 0 2-4"/></svg></span><span class="dance-name">Dance Moves<small>Classic groove</small></span></button>
+              <button class="dance-tile" data-clip="Dab" type="button" aria-pressed="false" aria-label="Play Dab dance"><span class="dance-number">08</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="13" cy="7" r="2"/><path d="m12 11-1 8m1-8 10-7M12 11 6 8 3 10m3-2 3 5m-2 13 4-7 6 7"/></svg></span><span class="dance-name">Dab<small>Strike a pose</small></span></button>
+              <button class="dance-tile" data-clip="Hype" type="button" aria-pressed="false" aria-label="Play Hype dance"><span class="dance-number">09</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="11" cy="5" r="2"/><path d="m11 9 2 8-6 3-3 5m9-8 5 6v3M11 10 5 7 3 3m8 7 7 1 3-5"/></svg></span><span class="dance-name">Hype<small>Bounce & drive</small></span></button>
+              <button class="dance-tile" data-clip="Groove Jam" type="button" aria-pressed="false" aria-label="Play Groove Jam dance"><span class="dance-number">10</span><span class="dance-glyph"><svg viewBox="0 0 24 28" aria-hidden="true"><circle cx="13" cy="5" r="2"/><path d="m12 9-2 9 6 4 3-1m-9-3-5 8m7-16-6-3-3 3m10 0 6 3 2-3M4 2v3m-1.5-1.5h3"/></svg></span><span class="dance-name">Groove Jam<small>Full-body groove</small></span></button>
+            </div>
+          </div>
+        </section>
+        <section id="pose-panel" class="character-panel" role="tabpanel" aria-labelledby="pose-tab" hidden>
+          <div class="setting-heading pose-heading"><h3>Shape the pose</h3><button id="pose-reset" class="text-button">Reset pose</button></div>
+          <div class="pose-sliders">
+            <div class="pose-control"><div class="range-label"><label for="head-yaw">Head turn</label><output id="head-yaw-value" for="head-yaw">0°</output></div><input id="head-yaw" type="range" min="-35" max="35" step="1" value="0"/></div>
+            <div class="pose-control"><div class="range-label"><label for="head-pitch">Head tilt</label><output id="head-pitch-value" for="head-pitch">0°</output></div><input id="head-pitch" type="range" min="-20" max="20" step="1" value="0"/></div>
+            <div class="pose-control"><div class="range-label"><label for="arm-raise">Arm raise</label><output id="arm-raise-value" for="arm-raise">0%</output></div><input id="arm-raise" type="range" min="0" max="1" step="0.01" value="0"/></div>
+            <div class="pose-control"><div class="range-label"><label for="tail-sway">Tail sway</label><output id="tail-sway-value" for="tail-sway">0°</output></div><input id="tail-sway" type="range" min="-35" max="35" step="1" value="0"/></div>
+            <div class="pose-control"><div class="range-label"><label for="blink">Blink</label><output id="blink-value" for="blink">0%</output></div><input id="blink" type="range" min="0" max="1" step="0.01" value="0"/></div>
+            <div class="pose-control"><div class="range-label"><label for="smile">Smile</label><output id="smile-value" for="smile">0%</output></div><input id="smile" type="range" min="0" max="1" step="0.01" value="0"/></div>
+          </div>
+          <div class="pose-tools"><label class="toggle-row" for="show-rig"><span>Skeleton</span><input type="checkbox" id="show-rig" role="switch"/><span class="toggle-track"></span></label><label class="ik-control" for="ik-target"><span>IK handle</span><select id="ik-target"><option value="none">None</option><option value="hand_l">Left hand</option><option value="hand_r">Right hand</option><option value="foot_l">Left foot</option><option value="foot_r">Right foot</option></select></label><p id="pose-help" class="panel-hint">Drag the handle to pose a hand or foot.</p></div>
+        </section>
+        <section id="capture-panel" class="character-panel capture-panel" role="tabpanel" aria-labelledby="capture-tab" data-state="empty" hidden>
+          <div class="capture-heading"><h3>Your moves. Noir's character.</h3><p>Use a video to create a reusable motion.</p></div>
+          <div class="capture-source-frame">
+            <video id="motion-source-video" controls muted playsinline preload="metadata" aria-label="Source video for motion capture" hidden></video>
+            <div class="capture-source-placeholder" aria-hidden="true"><svg viewBox="0 0 40 40"><rect x="6" y="8" width="28" height="24" rx="4"/><path d="m17 15 9 5-9 5Z"/><path d="M2 15v10m36-10v10"/></svg><span>Video preview</span></div>
+          </div>
+          <input id="motion-video-input" class="sr-only" type="file" accept="video/*" aria-label="Choose a source motion video" tabindex="-1"/>
+          <button id="choose-motion-video" class="capture-choose-button" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 13V3m-3 3 3-3 3 3M4 12v5h12v-5"/></svg>Choose a video</button>
+          <label id="motion-file-name" class="capture-file-name" for="motion-video-input">No video selected</label>
+          <p class="capture-guidance"><span>Single person</span><span>Full body and feet visible</span><span>Up to 20s per capture</span></p>
+          <div class="capture-trim">
+            <div class="capture-setting-title"><h4>Trim the capture</h4><span>20s maximum</span></div>
+            <div class="capture-trim-fields"><label for="motion-start"><span>Start</span><span class="capture-number-field"><input id="motion-start" type="number" min="0" step="0.1" value="0" inputmode="decimal"/><b>s</b></span></label><span class="capture-trim-dash" aria-hidden="true">→</span><label for="motion-end"><span>End</span><span class="capture-number-field"><input id="motion-end" type="number" min="0.1" step="0.1" value="20" inputmode="decimal"/><b>s</b></span></label></div>
+          </div>
+          <div class="capture-options">
+            <label class="toggle-row" for="motion-mirror"><span>Mirror motion</span><input id="motion-mirror" type="checkbox" role="switch"/><span class="toggle-track"></span></label>
+            <label class="toggle-row" for="motion-foot-lock"><span>Keep feet grounded</span><input id="motion-foot-lock" type="checkbox" role="switch" checked/><span class="toggle-track"></span></label>
+            <label class="toggle-row" for="motion-loop"><span>Loop captured clip</span><input id="motion-loop" type="checkbox" role="switch"/><span class="toggle-track"></span></label>
+            <div class="capture-smoothing"><div class="range-label"><label for="motion-smoothing">Smoothness</label><output id="motion-smoothing-value" for="motion-smoothing">65%</output></div><input id="motion-smoothing" type="range" min="0" max="1" step="0.05" value="0.65" style="--fill:65%"/></div>
+          </div>
+          <p id="motion-capture-status" class="capture-status" role="status" aria-live="polite">Choose a short full-body video.</p>
+          <div class="capture-progress"><label id="motion-progress-label" for="motion-progress">Analysis progress</label><progress id="motion-progress" max="1" value="0" aria-labelledby="motion-progress-label" hidden></progress></div>
+          <div class="capture-button-row"><button id="analyze-motion" class="capture-primary-button" type="button" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="4" r="1.7"/><path d="M10 7v5m-5-3 5-1 5 1m-8 8 3-5 3 5m4-14v3m-1.5-1.5h3"/></svg>Copy my moves</button><button id="cancel-motion" class="capture-cancel-button" type="button" hidden>Cancel</button></div>
+          <section id="captured-motion" class="captured-motion" aria-labelledby="captured-motion-title" hidden><div class="captured-motion-heading"><h4 id="captured-motion-title">Your capture</h4><button id="remove-captured-motion" class="text-button" type="button">Remove</button></div><button id="play-captured-motion" class="captured-motion-play" data-clip="Your motion" type="button" aria-pressed="false" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5 8 5-8 5Z"/></svg><span>Your motion</span><svg class="capture-waveform" viewBox="0 0 38 20" aria-hidden="true"><path d="M2 9v2m4-5v8m4-10v12m4-14v16m4-12v8m4-10v12m4-8v4m4-6v8m4-5v2"/></svg></button><p id="motion-capture-summary"></p></section>
+          <p class="capture-privacy"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="9" width="12" height="9" rx="2"/><path d="M7 9V5a3 3 0 0 1 6 0v4m-3 4v2"/></svg><span>Processed on your device. Your video stays in this browser.</span></p>
+        </section>
+        <section class="edition-info" aria-label="Current rendering style">
+          <div class="edition-info-top"><span class="edition-kicker" id="edition-kicker">DREAMCAST INSPIRED</span><span class="edition-chip" id="edition-chip">1999–2001</span></div>
+          <p id="edition-description">Sunshine, glossy plastic, arcade energy.</p>
+          <div class="edition-specs"><span id="edition-resolution">640 × 480</span><span id="edition-detail">7,128 triangles</span></div>
+        </section>
+        <section class="setting-section ps2-mood-section" id="ps2-mood-setting" hidden>
+          <div class="setting-heading"><h3>PS2 mood</h3><span>Choose a setting</span></div>
+          <div class="ps2-mood-switch" role="group" aria-label="PS2 mood"><button data-mood="character-select" class="selected" aria-pressed="true"><span>01</span>Character Select</button><button data-mood="foggy-town" aria-pressed="false"><span>02</span>Foggy Town</button></div>
+          <p id="ps2-mood-description">A quiet blue menu, with soft CRT output.</p>
+        </section>
+        <section class="setting-section" id="material-settings"><div class="setting-heading"><h3>Material</h3><span id="material-name">Charcoal</span></div><div class="swatch-row" role="group" aria-label="Cat material color"><button class="swatch selected" style="--swatch:#28292b" data-color="#202021" data-name="Charcoal" aria-label="Charcoal" aria-pressed="true"><svg viewBox="0 0 16 16"><path d="m4 8 3 3 5-6"/></svg></button><button class="swatch" style="--swatch:#d9c8ae" data-color="#cdbb9e" data-name="Oat milk" aria-label="Oat milk" aria-pressed="false"></button><button class="swatch" style="--swatch:#a5ada0" data-color="#8b9a83" data-name="Sage" aria-label="Sage" aria-pressed="false"></button><button class="swatch" style="--swatch:#c9a8a3" data-color="#b98d88" data-name="Dusty rose" aria-label="Dusty rose" aria-pressed="false"></button><button class="swatch" style="--swatch:#a4adbf" data-color="#8b9bb7" data-name="Periwinkle" aria-label="Periwinkle" aria-pressed="false"></button></div><div class="range-label"><label for="roughness">Roughness</label><output for="roughness" id="roughness-value">0.78</output></div><input id="roughness" type="range" min="0.25" max="1" step="0.01" value="0.78" aria-label="Material roughness"/><div class="range-extents"><span>Satin</span><span>Matte</span></div></section>
+
+        <section class="setting-section" id="backdrop-settings"><div class="setting-heading"><h3>Backdrop</h3><span id="backdrop-name">Warm studio</span></div><div class="backdrop-row" role="group" aria-label="Backdrop color"><button class="backdrop selected" data-bg="#eeece6" data-name="Warm studio" style="--bg:#eeece6" aria-label="Warm studio" aria-pressed="true"><span></span></button><button class="backdrop" data-bg="#dfe5e7" data-name="Cool mist" style="--bg:#dfe5e7" aria-label="Cool mist" aria-pressed="false"><span></span></button><button class="backdrop" data-bg="#e6e0e9" data-name="Lilac haze" style="--bg:#e6e0e9" aria-label="Lilac haze" aria-pressed="false"><span></span></button></div></section>
+
+        <section class="setting-section scene-options"><h3>Scene</h3><label class="toggle-row" for="auto-rotate"><span>Auto rotate</span><input type="checkbox" id="auto-rotate" role="switch"/><span class="toggle-track"></span></label><label class="toggle-row" for="shadows"><span>Ground shadow</span><input type="checkbox" id="shadows" role="switch" checked/><span class="toggle-track"></span></label><label class="toggle-row" for="wireframe"><span>Wireframe</span><input type="checkbox" id="wireframe" role="switch"/><span class="toggle-track"></span></label><label class="toggle-row" for="arcade-overlay" id="arcade-overlay-row"><span id="hud-toggle-label">Arcade HUD</span><input type="checkbox" id="arcade-overlay" role="switch" checked/><span class="toggle-track"></span></label></section>
+
+        <section class="reference-section"><div class="setting-heading"><h3>The reference</h3><span class="tiny-tag">2D → 3D</span></div><button class="reference-preview" id="open-reference" aria-label="Enlarge original character reference"><img src="/reference.png" alt="Original reference showing the black cat from front, side, and back"/><span><svg viewBox="0 0 20 20"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m6 0h4v-4"/></svg></span></button><p>Same little smile. A whole new point of view.</p></section>
+        <div class="build-note"><svg viewBox="0 0 20 20"><path d="m7 6-4 4 4 4m6-8 4 4-4 4m-2-10-2 12"/></svg><div><strong>Built with Three.js</strong><span>Procedural model · Portable GLB</span></div><span class="note-dot"></span></div>
+      </aside>
+    </main>
+    <footer class="footer"><span>NOIR <b>/</b> CHARACTER STUDIO</span><span>Drag to orbit <b>·</b> Scroll to zoom <b>·</b> <kbd>Space</kbd> to play / pause</span></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog id="reference-dialog"><button class="icon-button" id="close-reference" aria-label="Close reference">×</button><img src="/reference.png" alt="Full original front, side, and back reference"/><p>The original character reference</p></dialog>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+exports/
+.DS_Store
+.openai-local/
+.openai/
+.env
+.env.*
+!.env.example
+coverage/
+*.log
+uploads/
+captures/
