@@ -4,6 +4,8 @@
 
 A procedural Three.js character studio built from the supplied black-cat reference. Noir has a real 26-joint skeleton, skinned geometry, nineteen portable animations, facial controls, and hand/foot IK. All geometry, skin weights, props, and animation are authored in JavaScript; Blender and imported character models are not required.
 
+![The rigged black cat waving in the Dreamcast edition, with the animation timeline, camera controls, and export options visible](docs/images/studio.webp)
+
 ## Start in your browser
 
 Open the [live studio](https://new1direction.github.io/noir-cat-studio/). No installation, account, or wallet is required.
@@ -100,6 +102,8 @@ animator.update(deltaSeconds);
 `cat.userData.rig` provides the skeleton, named bones, bind transforms, meshes, and `resetPose()`. `cat.userData.materials` provides the fur and face materials. `cat.userData.parts` provides named surface references. Use `exportAnimatedGLB()` in `src/export.js` rather than JSON-stringifying runtime `userData`.
 
 ## Visual profiles
+
+![The same waving pose rendered in matte Original, glossy Dreamcast, pixelated PS1, and blue-lit PS2](docs/images/render-editions.webp)
 
 | Edition | Triangles per rigged cat | Treatment |
 | --- | ---: | --- |
