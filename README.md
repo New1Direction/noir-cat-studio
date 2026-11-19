@@ -1,6 +1,6 @@
 # Noir — Character Studio
 
-[Open the studio](https://new1direction.github.io/noir-cat-studio/) · [View the source](https://github.com/New1Direction/noir-cat-studio) · [Report an issue](https://github.com/New1Direction/noir-cat-studio/issues)
+[Open the studio](https://new1direction.github.io/noir-cat-studio/) · [Download the models](https://github.com/New1Direction/noir-cat-studio/releases/latest) · [View the source](https://github.com/New1Direction/noir-cat-studio) · [Report an issue](https://github.com/New1Direction/noir-cat-studio/issues)
 
 A procedural Three.js character studio built from the supplied black-cat reference. Noir has a real 26-joint skeleton, skinned geometry, nineteen portable animations, facial controls, and hand/foot IK. All geometry, skin weights, props, and animation are authored in JavaScript; Blender and imported character models are not required.
 
@@ -38,6 +38,8 @@ npm run preview
 ```
 
 `npm test` runs the rig, animation, motion-transfer, and GLB regressions. Video export is checked separately in browser QA. `npm run build` creates the production site in `dist`; `npm run preview` serves that build locally.
+
+Prebuilt GLBs for all four editions are also available in the [latest release](https://github.com/New1Direction/noir-cat-studio/releases/latest), with the MIT license, usage instructions, model manifest, and checksums.
 
 To generate all four animated models without opening the studio:
 
